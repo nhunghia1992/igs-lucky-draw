@@ -24,6 +24,8 @@ function initRandom() {
 			const id = result[i]
 			setWinner(i, id)	
 		}
+
+		$('#list_control').addClass('active')
 	});
 }
 initRandom();
@@ -52,8 +54,9 @@ function setWinner(index, id) {
 	const block = $(`.block[data-id="${id}"]`)
 	const name = block.data('name')
 	const phone = block.data('phone')
+	const idDisplay = block.text()
 	// set prize blocks info
-	prizeBlock.find('.prize-id').text(id)
+	prizeBlock.find('.prize-id').text(idDisplay)
 	prizeBlock.find('.prize-name').text(name)
 	prizeBlock.find('.prize-phone').text(phone)
 	const img = prizeBlock.data('img')
@@ -64,19 +67,24 @@ function setWinner(index, id) {
 
 	// set dialog info
 	const dialog = $('#dialog')
-	dialog.find('.dialog-id').text(id)
+	dialog.find('.dialog-id').text(idDisplay)
 	dialog.find('.dialog-name').text(name)
 	dialog.find('.dialog-phone').text(phone)
 	dialog.find('.dialog-img').attr('src', img)
 }
 
 function random(index, steps, interval, region) {
-	let blocks = $('.block').not('.final')
-	if (region) blocks = blocks.filter(`[data-region="${region}"]`);
 	const ids = [];
+	const idsRegion = []
+	let blocks = $('.block').not('.final')
 	blocks.each(function() {
 		const id = $(this).data('id')
 		ids.push(id)
+	})
+	if (region) blocks = blocks.filter(`[data-region="${region}"]`);
+	blocks.each(function() {
+		const id = $(this).data('id')
+		idsRegion.push(id)
 	})
 
 	let currentStep = 0
@@ -96,29 +104,40 @@ function random(index, steps, interval, region) {
 		currentStep++
 		if (currentStep > steps) {
 			clearInterval(highlight)
+			let randomIndexRegion = null
+			while (randomIndexRegion === null || $(`.block[data-id="${idsRegion[randomIndexRegion]}"]`).hasClass('final')) {
+				randomIndexRegion = Math.floor((Math.random() * idsRegion.length));
+			}
+			const randomIDRegion = idsRegion[randomIndexRegion]
 
-			setWinner(index, randomID)
-			saveResult()
+			setTimeout(() => {
+				setWinner(index, randomIDRegion)
+				saveResult()
+			}, interval)
 
 			// show congratulations
-			openDialog()
+			setTimeout(openDialog, 3 * interval)
+			// openDialog()
 		}
 	}, interval);
 }
 
 $('#start_random').on('click', async function() {
-	$('.close').addClass('d-none');
-	bgm.play();
-
 	const currentPrize = $('.prize-block').filter(function() {
 		const winnerID = $(this).data('winner-id')
 		return winnerID === '' || winnerID === undefined || winnerID === null
 	}).first()
+
+	if (!currentPrize.length) return;
+
+	$('.close').addClass('d-none');
+	bgm.play();
+	
 	const index = $('.prize-block').index(currentPrize)
 	const region = currentPrize.data('region')
 	const steps = 20
 	const interval = 300
-	const duration = (steps + 1) * interval
+	const duration = (steps + 3) * interval
 	random(index, steps, interval, region)
 
 	setTimeout(() => {
