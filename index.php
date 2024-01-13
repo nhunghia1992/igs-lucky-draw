@@ -1,4 +1,4 @@
-<?php $cache = '230628'; ?>
+<?php $cache = '241301'; ?>
 <!DOCTYPE html>
 <html lang="vi-VN">
 <head>
@@ -28,24 +28,24 @@
 	<div class="container wrapper">
 		<div class="row">
 			<div class="col">
-				<div class="prize-block" data-region="12" data-img="assets/imgs/prize-1.png">
-					<img class="img-fluid prize-img" src="assets/imgs/prize-1.png" />
+				<div class="prize-block" data-region="12" data-img="assets/imgs/prize-1.png?v=<?php echo $cache; ?>">
+					<img class="img-fluid prize-img" src="assets/imgs/prize-1.png?v=<?php echo $cache; ?>" />
 					<div class="prize-id text-center fw-bold mt-3 lead"></div>
 					<div class="prize-name text-center fw-bold"></div>
 					<div class="prize-phone text-center fw-bold"></div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="prize-block" data-region="12" data-img="assets/imgs/prize-2.png">
-					<img class="img-fluid prize-img" src="assets/imgs/prize-2.png" />
+				<div class="prize-block" data-region="12" data-img="assets/imgs/prize-2.png?v=<?php echo $cache; ?>">
+					<img class="img-fluid prize-img" src="assets/imgs/prize-2.png?v=<?php echo $cache; ?>" />
 					<div class="prize-id text-center fw-bold mt-3 lead"></div>
 					<div class="prize-name text-center fw-bold"></div>
 					<div class="prize-phone text-center fw-bold"></div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="prize-block" data-region="3" data-img="assets/imgs/prize-3.png">
-					<img class="img-fluid prize-img" src="assets/imgs/prize-3.png" />
+				<div class="prize-block" data-region="3" data-img="assets/imgs/prize-3.png?v=<?php echo $cache; ?>">
+					<img class="img-fluid prize-img" src="assets/imgs/prize-3.png?v=<?php echo $cache; ?>" />
 					<div class="prize-id text-center fw-bold mt-3 lead"></div>
 					<div class="prize-name text-center fw-bold"></div>
 					<div class="prize-phone text-center fw-bold"></div>
