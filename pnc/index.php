@@ -12,11 +12,11 @@ function getData($source)
 
 		$sheet_name = defined('GG_SHEET_NAME') ? GG_SHEET_NAME : '';
 		$sheet_range = defined('GG_SHEET_RANGE') ? GG_SHEET_RANGE : '';
-		$params = '/values/'.urlencode($sheet_name).'!'.$sheet_range.'?key=';
+		$params = '/values/' . urlencode($sheet_name) . '!' . $sheet_range . '?key=';
 		$spreadsheet_id = defined('GG_SPREADSHEET_ID') ? GG_SPREADSHEET_ID : '';
-		$json = file_get_contents($api_url.$spreadsheet_id.$params.$token);
+		$json = file_get_contents($api_url . $spreadsheet_id . $params . $token);
 		$data_arr = json_decode($json)->values;
-		$data = array_map(function($entry) {
+		$data = array_map(function ($entry) {
 			return [
 				'id' => $entry[0] ?? '',
 				'phone' => $entry[1] ?? '',
@@ -104,7 +104,7 @@ function getData($source)
 		</div>
 		<div class="row mt-3">
 			<div class="col actions text-center">
-				<button class="btn btn-primary" id="show_list" data-bs-target="#winner_list" data-bs-toggle="modal">Xem danh sách</button>
+
 			</div>
 		</div>
 		<div class="row align-items-end mt-3">
@@ -136,7 +136,10 @@ function getData($source)
 		Your browser does not support the audio element.
 	</audio>
 
-	<div id="list_control">
+	<div id="list_control" class="active">
+		<button class="btn btn-primary" id="show_list" data-bs-target="#winner_list" data-bs-toggle="modal">
+			Xem danh sách
+		</button>
 		<button type="button" class="btn btn-danger" id="clear_list">
 			Xóa danh sách
 		</button>

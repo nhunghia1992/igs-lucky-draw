@@ -28,7 +28,7 @@ function initRandom() {
 			renderWinner(index)
 		}
 
-		$('#list_control').addClass('active')
+		// $('#list_control').addClass('active')
 	});
 }
 initRandom();
