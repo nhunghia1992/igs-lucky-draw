@@ -110,9 +110,9 @@ function getData($source)
 		<div class="row align-items-end mt-3">
 			<?php
 			$prizeRow1 = [
-				2 => 2,
+				2 => 1,
 				1 => 1,
-				3 => 2
+				3 => 1
 			];
 			foreach ($prizeRow1 as $id => $prizeQuantity) {
 			?>
